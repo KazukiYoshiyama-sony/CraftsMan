@@ -241,7 +241,8 @@ if __name__=="__main__":
     )
     imagedream_pipeline.to(device)
     wonder3d_pipeline = DiffusionPipeline.from_pretrained(
-        'flamehaze1115/wonder3d-v1.0', # remote weights
+        # 'flamehaze1115/wonder3d-v1.0', # remote weights
+        "/group/project162/huggingface_models/wonder3d-v1.0",
         custom_pipeline='flamehaze1115/wonder3d-pipeline',
         torch_dtype=torch.float16
     )
