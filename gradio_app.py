@@ -16,6 +16,27 @@ import trimesh
 import gradio as gr
 from typing import Any
 
+# backward compat
+from diffusers.utils.torch_utils import randn_tensor
+import diffusers
+diffusers.utils.randn_tensor = randn_tensor
+
+# unet_2d_blocks = importlib.import_module('diffusers.models.unets.unet_2d_blocks')
+from diffusers.models.unets import unet_2d_blocks
+sys.modules['diffusers.models.unet_2d_blocks'] = unet_2d_blocks
+
+diffusers.utils.DIFFUSERS_CACHE = None
+diffusers.utils.HF_HUB_OFFLINE = False
+
+from diffusers.utils.torch_utils import maybe_allow_in_graph
+diffusers.utils.maybe_allow_in_graph = maybe_allow_in_graph
+
+from diffusers.models.normalization import AdaGroupNorm
+diffusers.models.attention.AdaGroupNorm = AdaGroupNorm
+
+from diffusers.models.transformers import dual_transformer_2d
+sys.modules['diffusers.models.dual_transformer_2d'] = dual_transformer_2d
+
 proj_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(proj_dir))
 
