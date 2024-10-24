@@ -397,5 +397,5 @@ if __name__=="__main__":
                         outputs=outputs, 
                         api_name="generate_img2obj")
         
-        demo.queue().launch(share=True, allowed_paths=[args.cached_dir], 
+        demo.queue().launch(share=False, allowed_paths=[args.cached_dir], 
                             server_name="0.0.0.0", server_port=43839)
